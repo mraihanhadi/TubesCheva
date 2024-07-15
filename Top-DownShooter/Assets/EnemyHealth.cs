@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class EnemyHealth : MonoBehaviour
 {
     public float maxHealth = 100;
     private float currentHealth;
 
-    public Image healthBar;  // Reference to the HealthBar UI Image
-    public Canvas enemyCanvas;  // Reference to the EnemyCanvas
-    public float healthBarVisibleDuration = 2f;  // Duration for which the health bar remains visible
+    public Image healthBar;
+    public Canvas enemyCanvas; 
+    public float healthBarVisibleDuration = 2f; 
+    public event Action OnEnemyDefeated;
 
     private Coroutine hideHealthBarCoroutine;
 
@@ -17,10 +19,8 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
-        enemyCanvas.enabled = false;  // Initially hide the health bar
+        enemyCanvas.enabled = false; 
     }
-
-    // Method to reduce health
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
@@ -36,8 +36,6 @@ public class EnemyHealth : MonoBehaviour
             ShowHealthBar();
         }
     }
-
-    // Method to update the health bar UI
     void UpdateHealthBar()
     {
         if (healthBar != null)
@@ -46,14 +44,12 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // Method to handle enemy death
+
     void Die()
     {
-        // Handle enemy death (e.g., destroy, respawn)
+        OnEnemyDefeated.Invoke();
         Destroy(gameObject);
     }
-
-    // Method to show the health bar and start the coroutine to hide it
     void ShowHealthBar()
     {
         if (enemyCanvas != null)
@@ -68,8 +64,6 @@ public class EnemyHealth : MonoBehaviour
             hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay());
         }
     }
-
-    // Coroutine to hide the health bar after a delay
     IEnumerator HideHealthBarAfterDelay()
     {
         yield return new WaitForSeconds(healthBarVisibleDuration);

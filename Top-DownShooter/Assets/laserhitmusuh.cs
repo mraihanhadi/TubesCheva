@@ -9,16 +9,19 @@ public class laserhitmusuh : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag != "Musuh" && collision.gameObject.tag != "laser")
         {
+            if(collision.gameObject.tag == "Player")
+            {
                 PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(damage);
                 }  
+            }
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(effect,0.85f);
+            Destroy(gameObject);
         }
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect,0.85f);
-        Destroy(gameObject);
     }
 }

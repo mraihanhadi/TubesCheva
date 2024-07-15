@@ -19,6 +19,12 @@ public class AIEnemy : MonoBehaviour
         {
             animator = GetComponent<Animator>();
         }
+
+        player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player not found. Make sure the player has the 'Player' tag.");
+        }
     }
 
     // Update is called once per frame
@@ -29,7 +35,7 @@ public class AIEnemy : MonoBehaviour
             float distance = Vector2.Distance(transform.position, player.transform.position); 
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
-            if (distance < 4)
+            if (distance < 6)
             {
                 transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
                 animator.SetBool("isWalking",true);

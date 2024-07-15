@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7188374816808389832}
   - component: {fileID: 1440803891438753851}
   - component: {fileID: 2225751516176791086}
-  - component: {fileID: -3108125610509360992}
   m_Layer: 6
   m_Name: bullet
   m_TagString: Untagged
@@ -159,27 +158,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.029984847, y: 0.025432529}
   m_EdgeRadius: 0
---- !u!114 &-3108125610509360992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6045169655695031140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1c06c20aa173b40a1fd07a4cd0bb27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletImpactEffects:
-  - {fileID: 7681760737040040811, guid: 8a1b81b8bc651b547aa2f5edbc510fcd, type: 3}
-  - {fileID: 6413243208920388234, guid: 0dea4f241878dc34d87b3114eece4a4a, type: 3}
-  - {fileID: 8190238810091404354, guid: f59df882c0192414684b3744d87d9bb8, type: 3}
-  - {fileID: 2398817916414544466, guid: 336d035496cb9b04f8981f2f21f34ba9, type: 3}
-  - {fileID: 7073157401258558204, guid: 3545b70d4ed9ddf488720fc1143932f7, type: 3}
-  - {fileID: 1295949697860986938, guid: ef8c6ee7198a8c1498405d5b153e0db0, type: 3}
-  - {fileID: 359135829450270240, guid: 411191377e4385c46853fac70634e8e8, type: 3}
-  - {fileID: 2834921595931303807, guid: f9e99422ad05d6749a628c755af1529e, type: 3}
-  - {fileID: 231347885800456046, guid: 7e8f2a58241ff2044b187c99a5a56bdb, type: 3}
-  - {fileID: 4687769720501662446, guid: 950ae47bf8b889b428f72a14c85829ba, type: 3}
-  impactEffectDuration: 2

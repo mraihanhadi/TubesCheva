@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 1019546379290723469}
   - component: {fileID: 5105106527723001758}
   - component: {fileID: 8803544580103292483}
-  - component: {fileID: 350172419886428439}
   - component: {fileID: -3121807335926935895}
   m_Layer: 0
   m_Name: enemylaser
-  m_TagString: Untagged
+  m_TagString: laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -160,20 +159,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17465198, y: 0.101737946}
   m_EdgeRadius: 0
---- !u!114 &350172419886428439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2656334091877418138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29a506e799c4a34ba7d0673e8b83770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  hitEffect: {fileID: 8379614456670597842, guid: e4ead6cb89da68443bc26cf5047a2699, type: 3}
 --- !u!114 &-3121807335926935895
 MonoBehaviour:
   m_ObjectHideFlags: 0
