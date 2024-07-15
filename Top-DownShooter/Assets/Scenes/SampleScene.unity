@@ -375,8 +375,8 @@ MonoBehaviour:
   - {fileID: 8952226545771541922, guid: ff7c96c57be889043bd386864bcaaa68, type: 3}
   - {fileID: 8084032791335881977, guid: c14e0ef1acf4c0d4e9f7e9d1165366d6, type: 3}
   - {fileID: 7522322329537274701, guid: 21197b0c77095084381152d13d132d04, type: 3}
-  enemiesPerWave: 10
-  timeBetweenWaves: 5
+  enemiesPerWave: 3
+  timeBetweenWaves: 2
 --- !u!4 &849846804
 Transform:
   m_ObjectHideFlags: 0
