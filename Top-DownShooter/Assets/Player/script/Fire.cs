@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public playerStats stats;
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
-    public float fireCooldown = 0.3f;
+    public float fireCooldown;
     private float nextfiretime = 0f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        fireCooldown = stats.fireRate;
+    }
     // Update is called once per frame
     void Update()
     {

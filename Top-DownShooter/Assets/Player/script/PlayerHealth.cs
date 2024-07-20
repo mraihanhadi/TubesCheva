@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float maxhealth = 100f;
+    public playerStats stats;
+    public float maxhealth;
     public UnityEngine.UI.Image healthBar;
     private float currenthealth;
     
     // Start is called before the first frame update
     void Start()
     {
+        maxhealth = stats.maxHP;
         currenthealth = maxhealth;
         UpdateHealthBar();
     }

@@ -10,6 +10,7 @@ public class AIEnemy : MonoBehaviour
     public float damage = 10f;
     private SpriteRenderer spriteRenderer;
     private bool isAttacking;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class AIEnemy : MonoBehaviour
         {
             Debug.LogError("Player not found. Make sure the player has the 'Player' tag.");
         }
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -66,18 +68,25 @@ public class AIEnemy : MonoBehaviour
     IEnumerator AttackPlayer()
     {
         isAttacking = true;
-        animator.SetBool("isWalking",false);
         animator.SetBool("isAttacking",true);
 
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damage);
         }
 
         animator.SetBool("isAttacking",false);
+        yield return new WaitForSeconds(0.1f);
         isAttacking = false;
+    }
+    void OnCollisionStat2D(Collision2D collision)
+    {
+        if(collision.gameObject == player)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 }

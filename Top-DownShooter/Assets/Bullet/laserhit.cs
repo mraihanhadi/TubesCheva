@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class laserhit : MonoBehaviour
+public class LaserHit : MonoBehaviour
 {
-    public float damage = 5f;
     public GameObject hitEffect;
+    private float damage;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,12 +16,20 @@ public class laserhit : MonoBehaviour
                 EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(damage);
+                    GameObject player = GameObject.FindWithTag("Player");
+                    if (player != null)
+                    {
+                        playerStats stats = player.GetComponent<playerStats>();
+                        if (stats != null)
+                        {
+                            damage = stats.damage;
+                            enemy.TakeDamage(damage);
+                        }
+                    }
                 }
-
             }
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(effect,0.85f);
+            Destroy(effect, 0.85f);
             Destroy(gameObject);
         }
     }
