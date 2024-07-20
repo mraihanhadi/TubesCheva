@@ -65,15 +65,16 @@ public class AIrange : MonoBehaviour
 
     IEnumerator ShootProjectile(Vector2 direction)
     {
-        animator.SetBool("isWalking", false);
         animator.SetBool("shoot",true);
         isAttacking = true;
+
+        yield return new WaitForSeconds(0.2f);
 
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * 1.5f, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         animator.SetBool("shoot",false);
         isAttacking = false;

@@ -8,6 +8,7 @@ public class manager : MonoBehaviour
     public Transform[] spawnPoints; 
     public int enemiesPerWave = 3; 
     public float timeBetweenWaves = 2f;
+    public playerxp Playerxp;
 
     private int enemiesRemainingToSpawn;
     private int enemiesRemainingToDefeat;
@@ -62,6 +63,7 @@ public class manager : MonoBehaviour
 
     void HandleEnemyDefeated()
     {
+        Playerxp.GainXP(10);
         enemiesRemainingToDefeat--;
     }
 

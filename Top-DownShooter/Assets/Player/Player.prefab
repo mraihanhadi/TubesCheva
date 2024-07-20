@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 2151326768287288418}
   - component: {fileID: 4475744821021496242}
   - component: {fileID: 5132721325887089859}
-  - component: {fileID: 6235429882142007632}
   - component: {fileID: 8501801115335784729}
   - component: {fileID: 8472340210362652619}
   - component: {fileID: 8664400085386550487}
+  - component: {fileID: 6239939638481089222}
+  - component: {fileID: 3856362589189092901}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -156,22 +157,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6235429882142007632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490697746794372644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4ac2a73feff6640b7315613942e060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 3001776350495846569}
-  bulletPrefab: {fileID: 4326171903615527708, guid: ca44a60763b2a3547a956d3f56c7bc17, type: 3}
-  bulletForce: 1.5
-  fireCooldown: 0.5
 --- !u!114 &8501801115335784729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a986aec883090824bbd323a6519d3b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 6239939638481089222}
   maxhealth: 100
   healthBar: {fileID: 0}
 --- !u!114 &8472340210362652619
@@ -244,6 +230,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.0804517, y: 0.11797851}
   m_EdgeRadius: 0
+--- !u!114 &6239939638481089222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490697746794372644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b83e99e0d1b5d544a8d80510b96e3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  fireRate: 0.5
+  damage: 5
+--- !u!114 &3856362589189092901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490697746794372644}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab9c62c48a3f0e42a9a7b5e25f1cc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 6239939638481089222}
+  firePoint: {fileID: 3001776350495846569}
+  bulletPrefab: {fileID: 4326171903615527708, guid: ca44a60763b2a3547a956d3f56c7bc17, type: 3}
+  bulletForce: 2.5
+  fireCooldown: 0.5
 --- !u!1 &3082784286308349860
 GameObject:
   m_ObjectHideFlags: 0
