@@ -1,0 +1,56 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map1.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "grass_n_water.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 5.5
+        },
+        "jawbreaker_tiles.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "map1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 694,
+                "y": 603
+            }
+        },
+        "roads_n_concrete.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/Muhammad Ghafarel/Desktop/TILES",
+    "map.height": 40,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 50,
+    "openFiles": [
+        "roads_n_concrete.tsx",
+        "grass_n_water.tsx",
+        "map1.tmx"
+    ],
+    "project": "map1.tiled-project",
+    "recentFiles": [
+        "roads_n_concrete.tsx",
+        "grass_n_water.tsx",
+        "map1.tmx",
+        "jawbreaker_tiles.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    }
+}
