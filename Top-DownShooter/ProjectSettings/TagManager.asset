@@ -8,6 +8,8 @@ TagManager:
   - laser
   - Musuh_1
   - Musuh_2
+  - Musuh
+  - Camera
   layers:
   - Default
   - TransparentFX

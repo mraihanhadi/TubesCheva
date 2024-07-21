@@ -9,7 +9,7 @@ public class LaserHit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag != "Player" && collision.gameObject.tag != "laser")
+        if(collision.gameObject.tag != "Player" && collision.gameObject.tag != "laser" && collision.gameObject.tag != "Camera" && collision.gameObject.tag != "MainCamera")
         {
             if(collision.gameObject.tag == "Musuh")
             {
