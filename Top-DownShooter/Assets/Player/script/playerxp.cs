@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 
 public class playerxp : MonoBehaviour
@@ -10,12 +11,14 @@ public class playerxp : MonoBehaviour
     public float exptonextlevel = 20;
     public UnityEngine.UI.Image expBar;
     public GameObject upgradeMenu;
+    public TextMeshProUGUI leveltext;
     // Start is called before the first frame update
     void Start()
     {
         upgradeMenu.SetActive(false);
         currentExp = 0;
         updatexpbar();
+        updateText();
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class playerxp : MonoBehaviour
         currentExp -= exptonextlevel;
         currentLevel++;
         exptonextlevel = Mathf.RoundToInt(exptonextlevel * 1.5f);
+        updateText();
         PauseGame();
         ShowUpgradeMenu();
         updatexpbar();
@@ -59,6 +63,10 @@ public class playerxp : MonoBehaviour
     void ShowUpgradeMenu()
     {
         upgradeMenu.SetActive(true);
+    }
+    void updateText()
+    {
+        leveltext.text = $"Level {currentLevel}";
     }
 
     public void ResumeGame()

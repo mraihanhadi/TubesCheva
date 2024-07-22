@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class manager : MonoBehaviour
@@ -9,6 +10,8 @@ public class manager : MonoBehaviour
     public int enemiesPerWave = 3; 
     public float timeBetweenWaves = 2f;
     public playerxp Playerxp;
+    public PlayerHealth playerhealth;
+    public TextMeshProUGUI WaveText;
 
     private int enemiesRemainingToSpawn;
     private int enemiesRemainingToDefeat;
@@ -34,6 +37,7 @@ public class manager : MonoBehaviour
     {
         enemiesRemainingToSpawn = enemiesPerWave * currentWave;
         enemiesRemainingToDefeat = enemiesRemainingToSpawn;
+        updateText();
         StartCoroutine(SpawnEnemies());
     }
 
@@ -63,8 +67,12 @@ public class manager : MonoBehaviour
 
     void HandleEnemyDefeated()
     {
+        playerhealth.GainHealth(5);
         Playerxp.GainXP(10);
         enemiesRemainingToDefeat--;
     }
-
+    void updateText()
+    {
+        WaveText.text = $"Wave {currentWave}";
+    }
 }

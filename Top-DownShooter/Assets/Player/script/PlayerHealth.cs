@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,6 +11,10 @@ public class PlayerHealth : MonoBehaviour
     public playerStats stats;
     public float maxhealth;
     public UnityEngine.UI.Image healthBar;
+    public Animator animator;
+    public Shoot fire;
+    public playerMovement movement;
+    public GameObject deathmenuUI;
     private float currenthealth;
     
     // Start is called before the first frame update
@@ -16,6 +22,20 @@ public class PlayerHealth : MonoBehaviour
     {
         maxhealth = stats.maxHP;
         currenthealth = maxhealth;
+        UpdateHealthBar();
+    }
+
+    void Update()
+    {
+        if(currenthealth > maxhealth)
+        {
+            currenthealth = maxhealth;
+        }
+    }
+
+    public void GainHealth(int amount)
+    {
+        currenthealth += amount;
         UpdateHealthBar();
     }
 
@@ -32,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Update is called once per frame
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         if(healthBar != null)
         {
@@ -42,6 +62,40 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        
+        movement.enabled = false;
+        fire.enabled = false;
+        animator.SetTrigger("death");
+        StartCoroutine(HandleDeath());
+    }
+
+    IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(1.5f);
+        StopAllEnemies();
+        deathmenuUI.SetActive(true);
+    }
+
+    void StopAllEnemies()
+    {
+        AIEnemy[] enemiesmelee = FindObjectsOfType<AIEnemy>();
+        foreach (AIEnemy enemy in enemiesmelee)
+        {
+            enemy.enabled = false;
+        }
+
+        AIrange[] enemiesrange = FindObjectsOfType<AIrange>();
+        foreach (AIrange enemy in enemiesrange)
+        {
+            enemy.enabled = false;
+        }
+    }
+    public void Replay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
