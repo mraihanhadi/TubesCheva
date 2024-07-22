@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using JetBrains.Annotations;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     public Canvas enemyCanvas; 
     public float healthBarVisibleDuration = 2f; 
     public event Action OnEnemyDefeated;
+    public Animator animator;
 
     private Coroutine hideHealthBarCoroutine;
 
@@ -28,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
         UpdateHealthBar();
 
         if (currentHealth <= 0)
-        {
+        {            
             Die();
         }
         else
@@ -48,8 +50,19 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         OnEnemyDefeated.Invoke();
+        gameObject.GetComponent<AIEnemy>().enabled = false;
+        gameObject.GetComponent<AIrange>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        animator.SetTrigger("dead");
+        StartCoroutine(DeathHandler());
+    }
+
+    IEnumerator DeathHandler()
+    {
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
+
     void ShowHealthBar()
     {
         if (enemyCanvas != null)

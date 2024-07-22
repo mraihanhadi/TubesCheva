@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 3542905158731649063}
   - component: {fileID: 7130749832532439124}
   - component: {fileID: 6368894479687164042}
+  - component: {fileID: 89424033371591932}
   m_Layer: 0
   m_Name: musuh_1
   m_TagString: Musuh
@@ -388,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b80d03415e5da4f89c7642633e16a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 490697746794372644, guid: 6be467b9dd62399408a6917889419b7f, type: 3}
+  player: {fileID: 5279503431535298157, guid: 7220941d895155f49b44bffa2cad3544, type: 3}
   speed: 0.425
   animator: {fileID: 4306180636398637903}
   damage: 10
@@ -408,6 +409,7 @@ MonoBehaviour:
   healthBar: {fileID: 2360302923835821245}
   enemyCanvas: {fileID: 6621454100947812137}
   healthBarVisibleDuration: 2
+  animator: {fileID: 4306180636398637903}
 --- !u!114 &6368894479687164042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,3 +424,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 8079655403117300260}
   offset: {x: 0, y: 0, z: 0}
+--- !u!114 &89424033371591932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717197751524142953}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b056a6b6c07bf4eb8915c85e624696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5279503431535298157, guid: 7220941d895155f49b44bffa2cad3544, type: 3}
+  speed: 0
+  animator: {fileID: 4306180636398637903}
+  projectilePrefab: {fileID: 2656334091877418138, guid: 70f2fd84bba6e544eab02391e68d527d, type: 3}
+  firePoint: {fileID: 0}
+  shootingRange: 6
+  fireRate: 1
