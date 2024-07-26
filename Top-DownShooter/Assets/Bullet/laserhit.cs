@@ -5,13 +5,14 @@ using UnityEngine;
 public class LaserHit : MonoBehaviour
 {
     public GameObject hitEffect;
+    public AudioSource hitSfx;
     private float damage;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag != "Player" && collision.gameObject.tag != "laser" && collision.gameObject.tag != "Camera" && collision.gameObject.tag != "MainCamera")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "laser" && collision.gameObject.tag != "Camera" && collision.gameObject.tag != "MainCamera")
         {
-            if(collision.gameObject.tag == "Musuh")
+            if (collision.gameObject.tag == "Musuh")
             {
                 EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
                 if (enemy != null)
@@ -28,6 +29,8 @@ public class LaserHit : MonoBehaviour
                     }
                 }
             }
+            hitSfx = gameObject.GetComponent<AudioSource>();
+            hitSfx.Play();
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.85f);
             Destroy(gameObject);

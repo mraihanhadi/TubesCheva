@@ -29,7 +29,7 @@ public class upgrademanager : MonoBehaviour
     }
     public void IncreaseDamage()
     {
-        stats.damage *= 1.25f;
+        stats.damage *= 1.15f;
         UpdateUI();
         Playerxp.ResumeGame();
     }
@@ -37,6 +37,6 @@ public class upgrademanager : MonoBehaviour
     {
         fireRateText.text = $"Fire Rate: {stats.fireRate:F2} -> {stats.fireRate * 0.95f:F2}";
         maxHPText.text = $"Max HP: {stats.maxHP:F2} -> {stats.maxHP * 1.15f:F2}";
-        damageText.text = $"Damage: {stats.damage:F2} -> {stats.damage * 1.25f:F2}";
+        damageText.text = $"Damage: {stats.damage:F2} -> {stats.damage * 1.15f:F2}";
     }
 }

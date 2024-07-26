@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public Shoot fire;
     public playerMovement movement;
     public GameObject deathmenuUI;
+    public AudioSource hitSfx;
     private float currenthealth;
     
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currenthealth -= amount;
         currenthealth = Mathf.Clamp(currenthealth,0,maxhealth);
+        hitSfx.Play();
         UpdateHealthBar();
 
         if(currenthealth <= 0)

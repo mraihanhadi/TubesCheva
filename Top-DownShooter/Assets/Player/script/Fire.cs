@@ -9,6 +9,7 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
     public float fireCooldown;
+    public AudioSource fireSfx;
     private float nextfiretime = 0f;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class Shoot : MonoBehaviour
         if(Input.GetButtonDown("Fire1") && Time.time >= nextfiretime) 
         {
             tembak();
+            fireSfx.Play();
             nextfiretime = Time.time + fireCooldown;
         }
     }

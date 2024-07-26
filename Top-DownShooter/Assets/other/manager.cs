@@ -12,6 +12,8 @@ public class manager : MonoBehaviour
     public playerxp Playerxp;
     public PlayerHealth playerhealth;
     public TextMeshProUGUI WaveText;
+    public float enemyDamage = 5f;
+    public float enemyHealth = 10f;
 
     private int enemiesRemainingToSpawn;
     private int enemiesRemainingToDefeat;
@@ -19,6 +21,8 @@ public class manager : MonoBehaviour
     private int currentSpawnIndex;
     void Start()
     {
+        enemyDamage = 5f;
+        enemyHealth = 10f;
         currentWave = 1;
         currentSpawnIndex = 0;
         StartNextWave();
@@ -29,6 +33,10 @@ public class manager : MonoBehaviour
         if (enemiesRemainingToDefeat <= 0 && enemiesRemainingToSpawn <= 0)
         {
             currentWave++;
+            if (currentWave % 5 == 0)
+            {
+                increaseEnemyStats();
+            }
             StartNextWave();
         }
     }
@@ -74,5 +82,10 @@ public class manager : MonoBehaviour
     void updateText()
     {
         WaveText.text = $"Wave {currentWave}";
+    }
+    void increaseEnemyStats()
+    {
+        enemyDamage *= 1.25f;
+        enemyHealth *= 1.5f;
     }
 }
