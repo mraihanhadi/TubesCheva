@@ -14,6 +14,8 @@ public class AIEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager enemyStats = FindObjectOfType<manager>();
+        damage = enemyStats.enemyDamage;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (animator == null)
@@ -81,12 +83,5 @@ public class AIEnemy : MonoBehaviour
         animator.SetBool("isAttacking",false);
         yield return new WaitForSeconds(0.1f);
         isAttacking = false;
-    }
-    void OnCollisionStat2D(Collision2D collision)
-    {
-        if(collision.gameObject == player)
-        {
-            rb.velocity = Vector2.zero;
-        }
     }
 }

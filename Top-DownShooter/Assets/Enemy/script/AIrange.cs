@@ -15,7 +15,6 @@ public class AIrange : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float nextFireTime;
     private bool isAttacking;
-
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

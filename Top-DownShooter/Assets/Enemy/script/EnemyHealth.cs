@@ -14,11 +14,13 @@ public class EnemyHealth : MonoBehaviour
     public float healthBarVisibleDuration = 2f; 
     public event Action OnEnemyDefeated;
     public Animator animator;
+    public AudioSource deathSfx;
 
     private Coroutine hideHealthBarCoroutine;
-
     void Start()
     {
+        manager enemyStats = FindObjectOfType<manager>();
+        maxHealth = enemyStats.enemyHealth;
         currentHealth = maxHealth;
         UpdateHealthBar();
         enemyCanvas.enabled = false; 
@@ -53,6 +55,7 @@ public class EnemyHealth : MonoBehaviour
         gameObject.GetComponent<AIEnemy>().enabled = false;
         gameObject.GetComponent<AIrange>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        deathSfx.Play();
         animator.SetTrigger("dead");
         StartCoroutine(DeathHandler());
     }
@@ -81,5 +84,9 @@ public class EnemyHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(healthBarVisibleDuration);
         enemyCanvas.enabled = false;
+    }
+    public void increaseHp()
+    {
+        maxHealth *= 1.5f;
     }
 }

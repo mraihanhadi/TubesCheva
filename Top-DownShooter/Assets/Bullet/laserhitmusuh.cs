@@ -6,7 +6,11 @@ public class laserhitmusuh : MonoBehaviour
 {
     public float damage = 5f;
     public GameObject hitEffect;
-
+    void Start()
+    {
+        manager enemyStats = FindObjectOfType<manager>();
+        damage = enemyStats.enemyDamage;
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag != "Musuh" && collision.gameObject.tag != "laser" && collision.gameObject.tag != "Camera" && collision.gameObject.tag != "MainCamera")
