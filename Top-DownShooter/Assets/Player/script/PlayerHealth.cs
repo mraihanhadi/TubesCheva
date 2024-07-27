@@ -98,6 +98,6 @@ public class PlayerHealth : MonoBehaviour
     
     public void Quit()
     {
-        Application.Quit();
+        SceneManager.LoadSceneAsync(0);
     }
 }
