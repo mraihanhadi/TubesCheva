@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
     public event Action OnEnemyDefeated;
     public Animator animator;
     public AudioSource deathSfx;
+    public float dropChance = 1f;
+    public GameObject doubleXpItemPrefab;
 
     private Coroutine hideHealthBarCoroutine;
     void Start()
@@ -52,6 +54,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         OnEnemyDefeated.Invoke();
+        TryDropDoubleXpItem();
         gameObject.GetComponent<AIEnemy>().enabled = false;
         gameObject.GetComponent<AIrange>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -88,5 +91,12 @@ public class EnemyHealth : MonoBehaviour
     public void increaseHp()
     {
         maxHealth *= 1.5f;
+    }
+    void TryDropDoubleXpItem()
+    {
+        if (UnityEngine.Random.value <= dropChance)
+        {
+            Instantiate(doubleXpItemPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

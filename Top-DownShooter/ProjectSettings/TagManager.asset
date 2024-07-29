@@ -10,6 +10,7 @@ TagManager:
   - Musuh_2
   - Musuh
   - Camera
+  - Item
   layers:
   - Default
   - TransparentFX

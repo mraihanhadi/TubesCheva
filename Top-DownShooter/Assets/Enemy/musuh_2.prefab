@@ -447,6 +447,8 @@ MonoBehaviour:
   healthBarVisibleDuration: 2
   animator: {fileID: 2228833994825272188}
   deathSfx: {fileID: -4002277942004066023}
+  dropChance: 0.1
+  doubleXpItemPrefab: {fileID: 5404357649085792789, guid: fe14be412e255154883cf31167298d3b, type: 3}
 --- !u!114 &3074800190495580334
 MonoBehaviour:
   m_ObjectHideFlags: 0

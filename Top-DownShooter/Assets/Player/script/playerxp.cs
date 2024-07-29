@@ -12,10 +12,15 @@ public class playerxp : MonoBehaviour
     public UnityEngine.UI.Image expBar;
     public GameObject upgradeMenu;
     public TextMeshProUGUI leveltext;
+    public bool isDoubleXpActive = false;
+    public float doubleXpDuration = 10f;
+    public TextMeshProUGUI doublexpDurationText;
+    private float remainingBuffTime;
     // Start is called before the first frame update
     void Start()
     {
         upgradeMenu.SetActive(false);
+        doublexpDurationText.gameObject.SetActive(false);
         currentExp = 0;
         updatexpbar();
         updateText();
@@ -24,15 +29,30 @@ public class playerxp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDoubleXpActive)
+        {
+            remainingBuffTime -= Time.deltaTime;
+            doublexpDurationText.text = "2x XP: " + remainingBuffTime.ToString("F2") + "s";
+            if (remainingBuffTime <= 0)
+            {
+                DeactivateDoubleXp();
+            }
+        }
         if (currentExp >= exptonextlevel)
         {
             LevelUp();
         }
     }
 
-    public void GainXP(int amount)
+    public void GainXP(float amount)
     {
+        if (isDoubleXpActive)
+        {
+            amount *= 2;
+        }
+        Debug.Log("Gain "+amount);
         currentExp += amount;
+        Debug.Log("Current "+currentExp);
         updatexpbar();
     }
 
@@ -73,5 +93,23 @@ public class playerxp : MonoBehaviour
     {
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
+    }
+    public void ActivateDoubleXp()
+    {
+        StartCoroutine(DoubleXpCoroutine());
+    }
+
+    IEnumerator DoubleXpCoroutine()
+    {
+        isDoubleXpActive = true;
+        remainingBuffTime = doubleXpDuration;
+        doublexpDurationText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(doubleXpDuration);
+        DeactivateDoubleXp();
+    }
+    private void DeactivateDoubleXp()
+    {
+        isDoubleXpActive = false;
+        doublexpDurationText.gameObject.SetActive(false);
     }
 }

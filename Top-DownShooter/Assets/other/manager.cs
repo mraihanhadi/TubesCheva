@@ -14,6 +14,7 @@ public class manager : MonoBehaviour
     public TextMeshProUGUI WaveText;
     public float enemyDamage = 5f;
     public float enemyHealth = 10f;
+    public float expGain = 10f;
 
     private int enemiesRemainingToSpawn;
     private int enemiesRemainingToDefeat;
@@ -76,7 +77,7 @@ public class manager : MonoBehaviour
     void HandleEnemyDefeated()
     {
         playerhealth.GainHealth(5);
-        Playerxp.GainXP(10);
+        Playerxp.GainXP(expGain);
         enemiesRemainingToDefeat--;
     }
     void updateText()
@@ -87,5 +88,6 @@ public class manager : MonoBehaviour
     {
         enemyDamage *= 1.25f;
         enemyHealth *= 1.5f;
+        expGain *= 1.05f;
     }
 }
