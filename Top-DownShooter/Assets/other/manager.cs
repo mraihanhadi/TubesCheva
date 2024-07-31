@@ -15,6 +15,8 @@ public class manager : MonoBehaviour
     public float enemyDamage = 5f;
     public float enemyHealth = 10f;
     public float expGain = 10f;
+    public float bossDamage = 25f;
+    public float bossHealth = 300f;
 
     private int enemiesRemainingToSpawn;
     private int enemiesRemainingToDefeat;

@@ -68,8 +68,8 @@ public class AIrange : MonoBehaviour
         isAttacking = true;
 
         yield return new WaitForSeconds(0.2f);
-
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * 1.5f, ForceMode2D.Impulse);
 
