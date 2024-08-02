@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossAI : MonoBehaviour
 {
@@ -11,17 +13,10 @@ public class BossAI : MonoBehaviour
     public Transform firePoint;
     public float shootingRange = 6f;
     public float fireRate = 1f;
-    public float shieldDuration = 20f;
-    public float shieldDamageReduction = 0.25f;
-    public float maxHealth = 100f;
-    public float currentHealth;
 
     private SpriteRenderer spriteRenderer;
     private float nextFireTime;
     private bool isAttacking;
-    private bool isShieldActive;
-    private Coroutine shieldCoroutine;
-    private float healthThreshold;
     private Vector3 originalFirePointPosition;
 
 
@@ -29,9 +24,6 @@ public class BossAI : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
-        healthThreshold = maxHealth * 0.8f; // 80% of max health
-
         nextFireTime = Time.time;
         player = GameObject.FindWithTag("Player");
         if (player == null)
@@ -43,7 +35,7 @@ public class BossAI : MonoBehaviour
 
     void Update()
     {
-        if (!isAttacking && !isShieldActive)
+        if (!isAttacking)
         {
             float distance = Vector2.Distance(transform.position, player.transform.position);
             Vector2 direction = player.transform.position - transform.position;
@@ -60,8 +52,6 @@ public class BossAI : MonoBehaviour
                 StartCoroutine(ShootProjectile(direction));
                 nextFireTime = Time.time + 1f / fireRate;
             }
-
-            // Flip sprite based on direction
             if (direction.x > 0)
             {
                 spriteRenderer.flipX = false;
@@ -79,57 +69,12 @@ public class BossAI : MonoBehaviour
     {
         animator.SetBool("Shooting",true);
         isAttacking = true;
-        yield return new WaitForSeconds(0.425f);
+        yield return new WaitForSeconds(0.4f);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * 1.5f, ForceMode2D.Impulse);
+        rb.AddForce(direction * 5f, ForceMode2D.Impulse);
         animator.SetBool("Shooting",false);
         isAttacking = false;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (isShieldActive)
-        {
-            damage *= shieldDamageReduction;
-        }
-
-        currentHealth -= damage;
-
-        // Check if health has dropped by 20%
-        if (currentHealth <= healthThreshold)
-        {
-            ActivateShield();
-            healthThreshold = currentHealth - maxHealth * 0.2f; // Update threshold to next 20%
-        }
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void ActivateShield()
-    {
-        if (!isShieldActive)
-        {
-            isShieldActive = true;
-            shieldCoroutine = StartCoroutine(ShieldCoroutine());
-        }
-    }
-
-    IEnumerator ShieldCoroutine()
-    {
-        animator.SetBool("ShieldActive", true);
-        yield return new WaitForSeconds(shieldDuration);
-        animator.SetBool("ShieldActive", false);
-        isShieldActive = false;
-    }
-
-    void Die()
-    {
-        // Handle boss death (e.g., play animation, drop items, etc.)
-        Destroy(gameObject);
     }
 }

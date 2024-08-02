@@ -28,6 +28,20 @@ public class LaserHit : MonoBehaviour
                         }
                     }
                 }
+                else
+                {
+                    bossHealth boss = collision.GetComponent<bossHealth>();
+                    GameObject player = GameObject.FindWithTag("Player");
+                    if (player != null)
+                    {
+                        playerStats stats = player.GetComponent<playerStats>();
+                        if (stats != null)
+                        {
+                            damage = stats.damage;
+                            boss.TakeDamage(damage);
+                        }
+                    }
+                }
             }
             hitSfx = gameObject.GetComponent<AudioSource>();
             hitSfx.Play();
