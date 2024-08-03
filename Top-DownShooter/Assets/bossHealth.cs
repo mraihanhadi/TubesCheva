@@ -15,6 +15,7 @@ public class bossHealth : MonoBehaviour
     public TextMeshProUGUI currentHealthText;
     public float shieldDamageReduction = 0.25f;
     public event Action OnEnemyDefeated;
+    public AudioSource deathsfx;
     private bool isShieldActive;
     private bool isActivatingShield;
     private float healthThreshold;
@@ -29,6 +30,14 @@ public class bossHealth : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Update()
+    {
+        if(currentHealth < 0)
+        {
+            currentHealth = 0;
+            UpdateHealthBar();
+        }
+    }
     public void TakeDamage(float damage)
     {
         if (isActivatingShield)
@@ -56,6 +65,7 @@ public class bossHealth : MonoBehaviour
         gameObject.GetComponent<BossAI>().enabled = false;
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         animator.SetTrigger("Death");
+        deathsfx.Play();
         StartCoroutine(DeathHandler());
     }
 

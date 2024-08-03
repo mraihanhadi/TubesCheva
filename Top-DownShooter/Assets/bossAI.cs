@@ -73,7 +73,7 @@ public class BossAI : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * 5f, ForceMode2D.Impulse);
+        rb.AddForce(direction * 7.5f, ForceMode2D.Impulse);
         animator.SetBool("Shooting",false);
         isAttacking = false;
     }

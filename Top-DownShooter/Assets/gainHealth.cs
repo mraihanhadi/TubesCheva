@@ -2,33 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class xpItem : MonoBehaviour
+public class gainHealth : MonoBehaviour
 {
-    private Coroutine despawn;
+    // Start is called before the first frame update
     void Start()
     {
-        despawn = StartCoroutine(deleteObject());
+        StartCoroutine(despawn());
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerxp playerXp = collision.GetComponent<playerxp>();
-            if (playerXp != null)
+            PlayerHealth playerHP = collision.GetComponent<PlayerHealth>();
+            if (playerHP != null)
             {
-                playerXp.ActivateDoubleXp();
-            }
-            if(despawn!=null)
-            {
-                StopCoroutine(despawn);
+                playerHP.GainHealth(25);
             }
             Destroy(gameObject);
         }
     }
-    IEnumerator deleteObject()
+    IEnumerator despawn()
     {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
-    
 }

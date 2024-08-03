@@ -84,12 +84,13 @@ public class PlayerHealth : MonoBehaviour
         {
             enemy.enabled = false;
         }
-
         AIrange[] enemiesrange = FindObjectsOfType<AIrange>();
         foreach (AIrange enemy in enemiesrange)
         {
             enemy.enabled = false;
         }
+        BossAI bosss = FindObjectOfType<BossAI>();
+        bosss.enabled = false;
     }
     public void Replay()
     {

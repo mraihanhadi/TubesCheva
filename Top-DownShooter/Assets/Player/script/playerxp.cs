@@ -13,9 +13,10 @@ public class playerxp : MonoBehaviour
     public GameObject upgradeMenu;
     public TextMeshProUGUI leveltext;
     public bool isDoubleXpActive = false;
-    public float doubleXpDuration = 10f;
+    public float doubleXpDuration = 30f;
     public TextMeshProUGUI doublexpDurationText;
     private float remainingBuffTime;
+    private Coroutine doubleXpCoroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,9 +51,7 @@ public class playerxp : MonoBehaviour
         {
             amount *= 2;
         }
-        Debug.Log("Gain "+amount);
         currentExp += amount;
-        Debug.Log("Current "+currentExp);
         updatexpbar();
     }
 
@@ -68,7 +67,7 @@ public class playerxp : MonoBehaviour
     {
         currentExp -= exptonextlevel;
         currentLevel++;
-        exptonextlevel = Mathf.RoundToInt(exptonextlevel * 1.15f);
+        exptonextlevel = Mathf.RoundToInt(exptonextlevel * 1.75f);
         updateText();
         PauseGame();
         ShowUpgradeMenu();
@@ -96,7 +95,11 @@ public class playerxp : MonoBehaviour
     }
     public void ActivateDoubleXp()
     {
-        StartCoroutine(DoubleXpCoroutine());
+        if(isDoubleXpActive)
+        {
+            StopCoroutine(doubleXpCoroutine);
+        }
+        doubleXpCoroutine = StartCoroutine(DoubleXpCoroutine());
     }
 
     IEnumerator DoubleXpCoroutine()

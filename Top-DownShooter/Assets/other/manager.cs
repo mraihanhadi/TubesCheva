@@ -24,18 +24,20 @@ public class manager : MonoBehaviour
     private int enemiesRemainingToDefeat;
     private int currentWave;
     private int currentSpawnIndex;
+    private bool isBossWave;
+    private bool canStartNextWave = true;
     void Start()
     {
         enemyDamage = 5f;
         enemyHealth = 10f;
-        currentWave = 8;
+        currentWave = 1;
         currentSpawnIndex = 0;
         StartNextWave();
     }
 
     void Update()
     {
-        if (enemiesRemainingToDefeat <= 0 && enemiesRemainingToSpawn <= 0)
+        if (enemiesRemainingToDefeat <= 0 && enemiesRemainingToSpawn <= 0 && canStartNextWave)
         {
             currentWave++;
             if (currentWave % 5 == 0)
@@ -48,15 +50,23 @@ public class manager : MonoBehaviour
 
     void StartNextWave()
     {
-        if (currentWave % 10 == 0 && enemiesRemainingToDefeat == 0 && enemiesRemainingToSpawn == 0)
+        if (currentWave % 10 == 0)
         {
-            enemiesRemainingToSpawn = 1;
-            spawnBoss();
+            if(!isBossWave)
+            {
+                isBossWave = true;
+                enemiesRemainingToSpawn = 1;
+                updateText();
+                spawnBoss();
+            }
         }
         else
         {
+            isBossWave = false;
             enemiesRemainingToSpawn = enemiesPerWave * currentWave;
             enemiesRemainingToDefeat = enemiesRemainingToSpawn;
+            Debug.Log("remaining to kill" + enemiesRemainingToDefeat);
+            Debug.Log("remaining to spawn" + enemiesRemainingToSpawn);
             updateText();
             StartCoroutine(SpawnEnemies());
         }
@@ -70,6 +80,8 @@ public class manager : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         enemiesRemainingToSpawn = 0;
+        Debug.Log("remaining to spawn" + enemiesRemainingToSpawn);
+        Debug.Log("remaining to kill" + enemiesRemainingToDefeat);
     }
 
     void SpawnEnemy()
@@ -88,7 +100,6 @@ public class manager : MonoBehaviour
 
     void HandleEnemyDefeated()
     {
-        playerhealth.GainHealth(5);
         Playerxp.GainXP(expGain);
         enemiesRemainingToDefeat--;
     }
@@ -111,13 +122,24 @@ public class manager : MonoBehaviour
         GameObject boss = Instantiate(bossPrefab, spawnPoints[currentSpawnIndex].position, Quaternion.identity);
         enemiesRemainingToDefeat = 1;
         enemiesRemainingToSpawn =  0;
+        Debug.Log("remaining to kill" + enemiesRemainingToDefeat);
         boss.GetComponent<bossHealth>().OnEnemyDefeated += HandleBossDefeated;
         currentSpawnIndex++;
     }
     void HandleBossDefeated()
     {
-        playerhealth.GainHealth(20);
+        playerhealth.GainHealth(30);
         Playerxp.GainXP(expGain * bossExpMultiplier);
         enemiesRemainingToDefeat--;
+        if (enemiesRemainingToDefeat <= 0)
+        {
+            canStartNextWave = false;
+            StartCoroutine(WaitBeforeNextWave(3f));
+        }
+    }
+    IEnumerator WaitBeforeNextWave(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        canStartNextWave = true;
     }
 }

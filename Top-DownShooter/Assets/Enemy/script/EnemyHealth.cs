@@ -15,8 +15,10 @@ public class EnemyHealth : MonoBehaviour
     public event Action OnEnemyDefeated;
     public Animator animator;
     public AudioSource deathSfx;
-    public float dropChance = 1f;
+    public float xpItemdropChance = 1f;
+    public float healthItemdropChance = 1f;
     public GameObject doubleXpItemPrefab;
+    public GameObject healthItemPrefan;
 
     private Coroutine hideHealthBarCoroutine;
     void Start()
@@ -55,6 +57,7 @@ public class EnemyHealth : MonoBehaviour
     {
         OnEnemyDefeated.Invoke();
         TryDropDoubleXpItem();
+        tryDropHP();
         gameObject.GetComponent<AIEnemy>().enabled = false;
         gameObject.GetComponent<AIrange>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -94,9 +97,26 @@ public class EnemyHealth : MonoBehaviour
     }
     void TryDropDoubleXpItem()
     {
-        if (UnityEngine.Random.value <= dropChance)
+        if (UnityEngine.Random.value <= xpItemdropChance)
         {
-            Instantiate(doubleXpItemPrefab, transform.position, Quaternion.identity);
+            Vector3 dropPosition = GetRandomDropPosition();
+            Instantiate(doubleXpItemPrefab, dropPosition, Quaternion.identity);
         }
     }
+    void tryDropHP()
+    {
+        if(UnityEngine.Random.value <= healthItemdropChance)
+        {
+            Vector3 dropPosition = GetRandomDropPosition();
+            Instantiate(healthItemPrefan, dropPosition, Quaternion.identity);
+        }
+    }
+    Vector3 GetRandomDropPosition()
+    {
+        float dropRadius = 0.15f;
+        Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * dropRadius;
+        Vector3 dropPosition = new Vector3(transform.position.x + randomOffset.x, transform.position.y + randomOffset.y, transform.position.z);
+        return dropPosition;
+    }
+
 }
