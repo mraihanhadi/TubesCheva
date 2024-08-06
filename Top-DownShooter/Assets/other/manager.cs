@@ -65,8 +65,6 @@ public class manager : MonoBehaviour
             isBossWave = false;
             enemiesRemainingToSpawn = enemiesPerWave * currentWave;
             enemiesRemainingToDefeat = enemiesRemainingToSpawn;
-            Debug.Log("remaining to kill" + enemiesRemainingToDefeat);
-            Debug.Log("remaining to spawn" + enemiesRemainingToSpawn);
             updateText();
             StartCoroutine(SpawnEnemies());
         }
@@ -80,8 +78,6 @@ public class manager : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         enemiesRemainingToSpawn = 0;
-        Debug.Log("remaining to spawn" + enemiesRemainingToSpawn);
-        Debug.Log("remaining to kill" + enemiesRemainingToDefeat);
     }
 
     void SpawnEnemy()
@@ -122,7 +118,6 @@ public class manager : MonoBehaviour
         GameObject boss = Instantiate(bossPrefab, spawnPoints[currentSpawnIndex].position, Quaternion.identity);
         enemiesRemainingToDefeat = 1;
         enemiesRemainingToSpawn =  0;
-        Debug.Log("remaining to kill" + enemiesRemainingToDefeat);
         boss.GetComponent<bossHealth>().OnEnemyDefeated += HandleBossDefeated;
         currentSpawnIndex++;
     }

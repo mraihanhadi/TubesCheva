@@ -181,6 +181,8 @@ GameObject:
   - component: {fileID: 5560674014323830567}
   - component: {fileID: 7194629353507854398}
   - component: {fileID: 4144149906292085511}
+  - component: {fileID: -2851007489123517604}
+  - component: {fileID: 1996056268829914642}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Musuh
@@ -520,6 +522,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2851007489123517604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343779176215135223}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b056a6b6c07bf4eb8915c85e624696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 0
+  animator: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  shootingRange: 6
+  fireRate: 1
+--- !u!114 &1996056268829914642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343779176215135223}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b80d03415e5da4f89c7642633e16a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 0
+  animator: {fileID: 0}
+  damage: 10
 --- !u!1 &4389229949211065019
 GameObject:
   m_ObjectHideFlags: 0

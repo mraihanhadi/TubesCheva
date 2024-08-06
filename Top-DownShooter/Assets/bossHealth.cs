@@ -98,6 +98,5 @@ public class bossHealth : MonoBehaviour
         isActivatingShield = false;
         gameObject.GetComponent<BossAI>().enabled = true;
         animator.SetBool("shieldActive",true);
-        Debug.Log(isActivatingShield);
     }
 }
