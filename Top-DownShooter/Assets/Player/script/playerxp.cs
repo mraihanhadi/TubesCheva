@@ -66,7 +66,7 @@ public class playerxp : MonoBehaviour
     {
         currentExp -= exptonextlevel;
         currentLevel++;
-        exptonextlevel = Mathf.RoundToInt(exptonextlevel * 1.75f);
+        exptonextlevel = Mathf.RoundToInt(exptonextlevel * 1.5f);
         updateText();
         PauseGame();
         ShowUpgradeMenu();

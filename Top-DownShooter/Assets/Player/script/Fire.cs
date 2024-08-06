@@ -19,12 +19,13 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && Time.time >= nextfiretime) 
+        if(Input.GetButton("Fire1") && Time.time >= nextfiretime) 
         {
             tembak();
             fireSfx.Play();
             nextfiretime = Time.time + fireCooldown;
         }
+        fireCooldown = stats.fireRate;
     }
 
     void tembak()

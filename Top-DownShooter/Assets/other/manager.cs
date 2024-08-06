@@ -44,6 +44,10 @@ public class manager : MonoBehaviour
             {
                 increaseEnemyStats();
             }
+            if (currentWave % 10 == 0 && currentWave != 10)
+            {
+                increaseBoss();
+            }
             StartNextWave();
         }
     }
@@ -107,7 +111,13 @@ public class manager : MonoBehaviour
     {
         enemyDamage *= 1.25f;
         enemyHealth *= 1.5f;
-        expGain *= 1.05f;
+        expGain *= 1.5f;
+    }
+    void increaseBoss()
+    {
+        bossDamage *=2f;
+        enemyHealth *=2f;
+        bossExpMultiplier *= 1.5f;
     }
     void spawnBoss()
     {
